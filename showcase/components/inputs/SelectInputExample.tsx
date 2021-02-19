@@ -1,0 +1,97 @@
+import * as React from "react";
+import {SelectInput, Panel} from "mg-ui";
+
+
+const items = [
+    {
+        id:1,name:"mg-ui",userName:"mg-ui",project:"MG-Uİ", img:"https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+    },
+    {
+        id:2,name:"mg-backend",userName:"mg-backend",project:"MG-BACKEND", img: "https://d3ui957tjb5bqd.cloudfront.net/images/users/18/185/185868/avatar-50-50.jpg?1524845263"
+    },
+    {
+        id:3,name:"mg-skeleton",userName:"mg-skeleton",project:"MG-SKELETON", img: "http://worldonline.media.clients.ellingtoncms.com/img/profiles/2010/Feb/19/lee-head-avatar-small_r48x48.jpg?5dda7ebe3a0a47b731bc018fa5259827222aab62"
+    },
+    {
+        id:4,name:"apache-karaf",userName:"apache-karaf",project:"APACHE KARAF", img: "https://img.wikinut.com/img/anxidmiwlv2yy1ar/jpeg/36x36/Author-profile-image.jpeg"
+    }
+
+];
+
+export default class SelectInputExample extends React.Component<any,any>{
+    constructor(props:any){
+        super(props);
+        this.state = {
+            selectInput : "",
+            singleActive: 3
+        }
+    }
+    render(){
+        return <div>
+                <SelectInput
+                    name={"selectInput"}
+                    items={items}
+                    label={"Single Select"}
+                    id={"id"}
+                    value={"project"}
+                    onChange={this.handleChange2.bind(this)}
+                    activeItem={this.state.singleActive}
+                />
+                <br/>
+                <SelectInput
+                    name={"selectInput2"}
+                    items={items}
+                    label={"Multi Select"}
+                    id={"id"}
+                    value={"project"}
+                    onChange={(e)=>{this.handleChange(e)}}
+                    type={"multi"}
+                    activeItem={this.state.selectInput2}
+                />
+                <br/>
+                <SelectInput
+                    name={"selectInput3"}
+                    items={items}
+                    id={"id"}
+                    label={"Multi Select Renderer"}
+                    value={"project"}
+                    onChange={this.handleChange.bind(this)}
+                    type={"multi"}
+                    renderer={this.rendererDropDown}
+                    activeItem={this.state.selectInput3}
+                />
+                <br/>
+                <SelectInput
+                    name={"selectInput4"}
+                    items={items}
+                    label={"Multi Select SelectRenderer"}
+                    id={"id"}
+                    value={"project"}
+                    onChange={this.handleChange.bind(this)}
+                    type={"multi"}
+                    renderer={this.rendererDropDown}
+                    selectedRenderer={this.selectRenderer}
+                    activeItem={this.state.selectInput4}
+                />
+            </div>;
+    }
+    handleChange(e){
+        let state = [];
+        state[e.target.name] = e.target.value;
+        this.setState(state);
+    }
+
+    handleChange2(e:any){
+        this.setState({
+            singleActive: e.target.value
+        })
+    }
+
+    rendererDropDown(value:any){
+        return <div><div className="img"><img src={value["img"]}/></div><span>{value["project"]}</span></div>;
+    }
+
+    selectRenderer(value:any){
+        return <div><div className="img"><img src={value["img"]}/></div><span>{value["project"]}</span></div>;
+    }
+}

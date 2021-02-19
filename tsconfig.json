@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./docs/",
+    "target": "es5",
+    "lib": ["es6", "dom"],
+    "sourceMap": true,
+    "jsx": "react",
+    "module": "commonjs",
+    "allowJs":true,
+    "noImplicitAny": false,
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "mg-ui/lib": ["src"],
+      "mg-lib": ["src"],
+      "mg-ui": ["src/index"]
+    }
+  },
+  "reflectionEnabled": true,
+  "include": [
+    "./**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    ".git"
+  ]
+}
